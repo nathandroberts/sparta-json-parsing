@@ -10,27 +10,27 @@ describe ParseJson do
     end
 
     it "base should be EUR" do
-      expect(@j.json_file['base']).to eq('EUR')
+      expect(@j.get_base).to eq('EUR')
     end
 
     it "date should be the correct length" do
-      expect(@j.json_file['date'].length).to eq(10)
+      expect(@j.get_date_length).to eq(10)
     end
 
     it "currency values should be floats" do
-      @j.json_file["rates"].each  do |key, value|
+      @j.get_rates.each  do |key, value|
         expect(value).to be_a(Float)
       end
     end
 
     it "currency values should be positive" do
-      @j.json_file["rates"].each  do |key, value|
+      @j.get_rates.each  do |key, value|
         expect(value).to be > (0)
       end
     end
 
     it "currency names should be three letters long and a string" do
-      @j.json_file["rates"].each  do |key, value|
+      @j.get_rates.each  do |key, value|
         expect(key).to be_a(String)
         expect(key.length).to eq(3)
       end
